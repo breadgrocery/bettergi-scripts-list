@@ -6,21 +6,21 @@ on:
     branches:
       - main
     paths:
-      - 'repo/pathing/**/*.json'
+      - "repo/pathing/**/*.json"
   workflow_dispatch:
     inputs:
       path:
-        description: '要验证的路径'
+        description: "要验证的路径"
         required: true
-        default: 'repo/pathing'
+        default: "repo/pathing"
         type: string
       auto_fix:
-        description: '是否自动修复问题'
+        description: "是否自动修复问题"
         required: false
         default: true
         type: boolean
       pr_number:
-        description: '关联的 PR 号'
+        description: "关联的 PR 号"
         required: false
         type: string
 
@@ -30,7 +30,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    
+
     steps:
       - name: Set environment variables based on trigger type
         id: set_env
@@ -69,7 +69,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
       - name: Install dependencies
         run: |
@@ -99,21 +99,21 @@ jobs:
           git config --global user.email "actions@github.com"
           # 设置Git处理中文等特殊字符
           git config --global core.quotepath false
-          
+
           # 确保远程仓库设置正确
           echo "当前远程仓库配置:"
           git remote -v
-          
+
           # 设置变量
           MAIN_REPO="${{ github.repository }}"
           PR_REPO="${{ github.event.pull_request.head.repo.full_name || github.repository }}"
-          
+
           # 设置上游仓库(upstream)指向主仓库
           UPSTREAM_REPO="https://github.com/${MAIN_REPO}.git"
           echo "设置upstream指向主仓库: $UPSTREAM_REPO"
           git remote remove upstream 2>/dev/null || true
           git remote add upstream $UPSTREAM_REPO
-          
+
           # 确保origin指向PR的fork仓库
           if [ "$PR_REPO" != "$MAIN_REPO" ] && [ "${{ steps.set_env.outputs.trigger_type }}" = "pr" ]; then
             ORIGIN_REPO="https://github.com/${PR_REPO}.git"
@@ -122,18 +122,18 @@ jobs:
             ORIGIN_REPO=$UPSTREAM_REPO
             echo "PR来自同一仓库或非PR触发，origin与upstream相同: $ORIGIN_REPO"
           fi
-          
+
           git remote set-url origin $ORIGIN_REPO 2>/dev/null || git remote add origin $ORIGIN_REPO
-          
+
           # 获取最新的主仓库和分支
           echo "获取远程分支信息"
           git fetch upstream
           git fetch origin
-          
+
           # 显示远程仓库配置
           echo "更新后的远程仓库配置:"
           git remote -v
-          
+
           # 检查是否处于PR环境并切换到正确的分支
           if [ "${{ steps.set_env.outputs.trigger_type }}" = "pr" ] && [ -n "${{ steps.set_env.outputs.head_ref }}" ]; then
             echo "检测到PR，切换到PR分支: ${{ steps.set_env.outputs.head_ref }}"
@@ -213,14 +213,14 @@ jobs:
           echo "当前分支: $(git branch --show-current)"
           echo "HEAD指向: $(git rev-parse HEAD)"
           echo "PR基础分支: ${{ steps.set_env.outputs.base_ref }}"
-          
+
           # 确保有upstream/main分支
           git fetch upstream main
           echo "Upstream/main SHA: $(git rev-parse upstream/main)"
-          
+
           # 创建临时变量来存储修改的文件列表
           CHANGED_FILES=""
-          
+
           # 方法1：尝试使用git diff检测变化
           echo "检测方法1: 使用git diff检测"
           FILES_METHOD_1=$(git diff --name-only upstream/main HEAD | grep -E '^repo/pathing/.*\.json$' || true)
@@ -231,7 +231,7 @@ jobs:
           else
             echo "方法1未找到修改的JSON文件"
           fi
-          
+
           # 方法2：如果方法1失败，尝试直接查询PR API获取修改的文件
           if [ -z "$CHANGED_FILES" ] && [ -n "${{ steps.set_env.outputs.pr_number }}" ]; then
             echo "检测方法2: 使用GitHub API检测"
@@ -247,7 +247,7 @@ jobs:
               echo "方法2未找到修改的JSON文件"
             fi
           fi
-          
+
           # 方法3：如果前两种方法都失败，列出所有repo/pathing中的JSON文件，但限制在最近修改的
           if [ -z "$CHANGED_FILES" ]; then
             echo "检测方法3: 列出最近修改的JSON文件"
@@ -263,13 +263,13 @@ jobs:
               echo "方法3未找到最近修改的JSON文件"
             fi
           fi
-          
+
           # 最后回退方案：直接指定验证目录
           if [ -z "$CHANGED_FILES" ]; then
             echo "⚠️ 警告: 所有方法均未检测到修改的JSON文件，将验证整个repo/pathing目录"
             CHANGED_FILES="repo/pathing"
           fi
-          
+
           # 输出结果
           echo "最终找到的修改文件:"
           echo "$CHANGED_FILES"
@@ -289,9 +289,9 @@ jobs:
           set -e
           # 使用base64解码文件列表
           CHANGED_FILES=$(echo "$CHANGED_FILES_B64" | base64 --decode)
-          
+
           echo "进行地图追踪目录结构校验"
-          
+
           # 地图追踪目录结构校验
           echo "🔍 开始地图追踪目录结构校验..."
           : > validation_output.log
@@ -299,7 +299,7 @@ jobs:
           python build/validate.py "repo/pathing" --structure 2>&1 | tee -a validation_output.log
           PY_EXIT=$?
           set -e
-          
+
           # 检查目录结构校验结果
           if [ $PY_EXIT -ne 0 ]; then
             echo "❌ pathing目录结构校验失败"
@@ -311,7 +311,7 @@ jobs:
             echo "✅ 地图追踪目录结构校验通过"
             VALIDATION_FAILED=false
           fi
-          
+
           # 如果目录结构校验失败，直接退出
           if [ "$VALIDATION_FAILED" = true ]; then
             echo "检测到地图追踪目录结构错误，生成校验说明并标记失败"
@@ -321,18 +321,18 @@ jobs:
             } > validation_notes.md
             exit 1
           fi
-          
+
           # 目录结构校验通过后，继续验证修改的JSON文件
           echo "PR 触发模式，验证修改的 JSON 文件"
           if [ -z "$CHANGED_FILES" ]; then
             echo "没有找到修改的 JSON 文件，跳过JSON内容验证"
             exit 0
           fi
-          
+
           # 检查Python解释器编码设置
           echo "Python编码设置:"
           python -c "import sys; print(sys.getdefaultencoding())"
-          
+
           # 重新初始化日志文件用于JSON内容校验
           : > validation_output.log
           VALIDATION_FAILED=false
@@ -355,7 +355,7 @@ jobs:
             fi
           done < temp_file_list.txt
           rm temp_file_list.txt
-          
+
           # 检查是否有文件被修改
           if [ -n "$(git status --porcelain)" ]; then
             echo "发现修改，提交更改"
@@ -429,7 +429,7 @@ jobs:
               echo "请前往 Actions 查看报错详情（运行日志）。"
             } > validation_notes.md
           fi
-          
+
           # 检查是否有文件被修改
           if [ -n "$(git status --porcelain)" ]; then
             echo "发现修改，提交更改"
@@ -494,11 +494,11 @@ jobs:
           else
             echo "没有文件被修改，无需提交"
           fi
-          
+
           if [ "$VALIDATION_FAILED" = true ]; then
             exit 1
           fi
-          
+
       - name: Add PR comment
         if: ${{ always() && ((steps.set_env.outputs.trigger_type == 'pr') || (steps.set_env.outputs.trigger_type == 'manual' && steps.set_env.outputs.pr_number != '' && steps.pr_info.outputs.found == 'true')) }}
         continue-on-error: true
@@ -508,7 +508,7 @@ jobs:
           script: |
             const fs = require('fs');
             const pr_number = ${{ steps.set_env.outputs.pr_number }};
-            
+
             if (fs.existsSync('validation_notes.md')) {
               const message = fs.readFileSync('validation_notes.md', 'utf8');
               await github.rest.issues.createComment({

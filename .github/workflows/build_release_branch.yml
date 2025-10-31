@@ -3,86 +3,86 @@ name: Scheduled Build and Release
 on:
   schedule:
     # 每天下午18点执行 (UTC时间10点)
-    - cron: '0 10 * * *'
+    - cron: "0 10 * * *"
   workflow_dispatch: # 允许手动触发
 
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'babalae'
-    
+
     permissions:
       contents: write
       actions: read
-    
+
     steps:
-    - name: 📥 检出代码仓库
-      uses: actions/checkout@v4
-      with:
-        path: bettergi-scripts-list
-        fetch-depth: 0
-    
-    - name: 🚀 配置 Node.js 环境
-      uses: actions/setup-node@v4
-      with:
-        node-version: '22'
-    
-    - name: 🔨 构建项目并生成文件
-      run: |
-        echo "🔄 开始构建项目..."
-        cd bettergi-scripts-list
-        echo "📦 执行构建脚本 (强制模式 + Gzip压缩)"
-        node ./build/build.js --force --gzip
-        echo "✅ 项目构建完成"
-    
-    - name: 📋 复制生成的文件到工作目录
-      run: |
-        echo "📂 复制 repo.json 和 repo.json.gz 文件..."
-        cp bettergi-scripts-list/repo.json .
-        cp bettergi-scripts-list/repo.json.gz .
-        echo "✅ 文件复制完成"
-        ls -la *.json*
-    
-    - name: 🧹 清理工作目录变更
-      run: |
-        echo "🔄 清理 bettergi-scripts-list 目录中的变更..."
-        cd bettergi-scripts-list
-        git checkout -- .
-        git clean -fd
-        echo "✅ 工作目录清理完成"
-    
-    - name: 🌿 准备 Release 分支
-      run: |
-        echo "🔄 开始准备 Release 分支..."
-        cd bettergi-scripts-list
-        
-        echo "🗑️ 删除本地 release 分支（如果存在）"
-        git branch -D release || true
-        
-        echo "🆕 创建新的 orphan 分支"
-        git checkout --orphan release
-        git rm -rf .
-        
-        echo "📦 检出 main 分支的内容到工作区"
-        git checkout main -- repo .gitignore
-        
-        echo "📋 复制生成的文件到 release 分支"
-        cp ../repo.json .
-        cp ../repo.json.gz .
-        
-        echo "📊 显示当前文件状态"
-        ls -la
-        echo "✅ Release 分支准备完成"
-    
-    - name: 🚀 提交并推送到 Release 分支
-      uses: stefanzweifel/git-auto-commit-action@v5
-      with:
-        commit_message: "rebuild release branch"
-        branch: release
-        push_options: '--force'
-        repository: bettergi-scripts-list
-        file_pattern: .
-        skip_dirty_check: true
-        skip_fetch: false
-        skip_checkout: true
-        create_branch: false
+      - name: 📥 检出代码仓库
+        uses: actions/checkout@v4
+        with:
+          path: bettergi-scripts-list
+          fetch-depth: 0
+
+      - name: 🚀 配置 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: 🔨 构建项目并生成文件
+        run: |
+          echo "🔄 开始构建项目..."
+          cd bettergi-scripts-list
+          echo "📦 执行构建脚本 (强制模式 + Gzip压缩)"
+          node ./build/build.js --force --gzip
+          echo "✅ 项目构建完成"
+
+      - name: 📋 复制生成的文件到工作目录
+        run: |
+          echo "📂 复制 repo.json 和 repo.json.gz 文件..."
+          cp bettergi-scripts-list/repo.json .
+          cp bettergi-scripts-list/repo.json.gz .
+          echo "✅ 文件复制完成"
+          ls -la *.json*
+
+      - name: 🧹 清理工作目录变更
+        run: |
+          echo "🔄 清理 bettergi-scripts-list 目录中的变更..."
+          cd bettergi-scripts-list
+          git checkout -- .
+          git clean -fd
+          echo "✅ 工作目录清理完成"
+
+      - name: 🌿 准备 Release 分支
+        run: |
+          echo "🔄 开始准备 Release 分支..."
+          cd bettergi-scripts-list
+
+          echo "🗑️ 删除本地 release 分支（如果存在）"
+          git branch -D release || true
+
+          echo "🆕 创建新的 orphan 分支"
+          git checkout --orphan release
+          git rm -rf .
+
+          echo "📦 检出 main 分支的内容到工作区"
+          git checkout main -- repo .gitignore
+
+          echo "📋 复制生成的文件到 release 分支"
+          cp ../repo.json .
+          cp ../repo.json.gz .
+
+          echo "📊 显示当前文件状态"
+          ls -la
+          echo "✅ Release 分支准备完成"
+
+      - name: 🚀 提交并推送到 Release 分支
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "rebuild release branch"
+          branch: release
+          push_options: "--force"
+          repository: bettergi-scripts-list
+          file_pattern: .
+          skip_dirty_check: true
+          skip_fetch: false
+          skip_checkout: true
+          create_branch: false
