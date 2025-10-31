@@ -1,5 +1,5 @@
 {
-  "time": "20251031165705",
+  "time": "20251031213255",
   "url": "https://github.com/babalae/bettergi-scripts-list/archive/refs/heads/main.zip",
   "file": "repo.json",
   "indexes": [
@@ -85300,6 +85300,23 @@
             "bgi≥0.52.0"
           ],
           "lastUpdated": "2025-10-28 11:47:26"
+        },
+        {
+          "name": "MoreFriends",
+          "type": "directory",
+          "version": "0.1",
+          "author": "breadgrocery",
+          "authors": [
+            {
+              "name": "breadgrocery",
+              "link": "https://github.com/breadgrocery"
+            }
+          ],
+          "description": "每日加好友 & 抱大佬大腿~|~多打窝，广撒网，列表大佬遍地跑",
+          "tags": [
+            "bgi≥0.53.0"
+          ],
+          "lastUpdated": "2025-10-31 17:44:18"
         },
         {
           "name": "NaiLong",
