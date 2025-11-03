@@ -1,5 +1,5 @@
 {
-  "time": "20251103235341",
+  "time": "20251103232703",
   "url": "https://github.com/babalae/bettergi-scripts-list/archive/refs/heads/main.zip",
   "file": "repo.json",
   "indexes": [
@@ -84623,7 +84623,7 @@
         {
           "name": "AAA-Artifacts-Bulk-Supply",
           "type": "directory",
-          "version": "1.4.3",
+          "version": "1.4.4",
           "author": "mno",
           "authors": [
             {
@@ -84635,11 +84635,11 @@
               "link": "https://github.com/jiegedabaobei"
             }
           ],
-          "description": "AAA狗粮批发~|~直接利用富A富B的98个上限点路线交替运行(路线不重复),来给收尾和额外路线卡时间，花最少的时间拿最多的狗粮",
+          "description": "AAA狗粮批发~|~直接利用富A富B的99个上限点路线交替运行(路线不重复),来给收尾和额外路线卡时间，花最少的时间拿最多的狗粮",
           "tags": [
             "狗粮"
           ],
-          "lastUpdated": "2025-10-28 09:21:56"
+          "lastUpdated": "2025-11-03 22:39:17"
         },
         {
           "name": "AEscoffier_chef",
@@ -84779,7 +84779,7 @@
         {
           "name": "ArtifactsGroupPurchasing",
           "type": "directory",
-          "version": "1.5.17",
+          "version": "1.5.18",
           "author": "mno",
           "authors": [
             {
@@ -84795,7 +84795,7 @@
           "tags": [
             "狗粮"
           ],
-          "lastUpdated": "2025-11-02 17:56:03"
+          "lastUpdated": "2025-11-03 22:39:17"
         },
         {
           "name": "Auto Theft NPC & 原食",
@@ -85071,7 +85071,7 @@
         {
           "name": "AutoHoeingOneDragon",
           "type": "directory",
-          "version": "1.10.1",
+          "version": "1.10.2",
           "author": "mno",
           "authors": [
             {
@@ -85085,7 +85085,7 @@
           ],
           "description": "锄地一条龙~|~一站式解决自动化锄地，支持只拾取狗粮，请仔细阅读README.md后使用",
           "tags": [],
-          "lastUpdated": "2025-11-02 17:56:03"
+          "lastUpdated": "2025-11-03 22:39:17"
         },
         {
           "name": "AutoLeyLineOutcrop",
@@ -85237,25 +85237,6 @@
             "合成树脂"
           ],
           "lastUpdated": "2025-11-02 13:27:59"
-        },
-        {
-          "name": "AutoSmithyOre",
-          "type": "directory",
-          "version": "1.1",
-          "author": "寒露",
-          "authors": [
-            {
-              "name": "寒露",
-              "link": "https://github.com/lwwens"
-            }
-          ],
-          "description": "自动锻造魔矿~|~自动选择铁匠铺去锻造魔矿，默认选择蒙德铁匠铺；可选择其他地区铁匠铺。由于地图追踪功能不支持室内定位，所以不支持纳塔铁匠铺。",
-          "tags": [
-            "锻造",
-            "精锻用魔矿",
-            "坐标点击"
-          ],
-          "lastUpdated": "2025-08-28 16:59:59"
         },
         {
           "name": "AutoStoryLoader",
@@ -85622,7 +85603,7 @@
         {
           "name": "FurinaSalonSolitaireOusiaDefeatLocalLegend",
           "type": "directory",
-          "version": "1.0",
+          "version": "1.1",
           "author": "起个名字好难的喵",
           "authors": [
             {
@@ -85632,9 +85613,12 @@
           ],
           "description": "芙芙挂机暗杀流~|~",
           "tags": [
-            "bgi≥0.37.2"
+            "bgi≥0.37.2",
+            "芙宁娜",
+            "地方传奇",
+            "挂机暗杀"
           ],
-          "lastUpdated": "2025-07-04 23:14:44"
+          "lastUpdated": "2025-11-03 23:26:36"
         },
         {
           "name": "HoeingPathingTest",
@@ -85741,23 +85725,6 @@
           "lastUpdated": "2025-11-02 13:27:59"
         },
         {
-          "name": "MoreFriends",
-          "type": "directory",
-          "version": "0.1",
-          "author": "breadgrocery",
-          "authors": [
-            {
-              "name": "breadgrocery",
-              "link": "https://github.com/breadgrocery"
-            }
-          ],
-          "description": "每日加好友 & 抱大佬大腿~|~多打窝，广撒网，列表大佬遍地跑",
-          "tags": [
-            "bgi≥0.53.0"
-          ],
-          "lastUpdated": "2025-10-31 17:44:18"
-        },
-        {
           "name": "NaiLong",
           "type": "directory",
           "version": "1.0",
@@ -85771,6 +85738,27 @@
           "description": "奶龙~|~在日志窗口一直输出奶龙",
           "tags": [],
           "lastUpdated": "2025-07-05 00:25:10"
+        },
+        {
+          "name": "OBS录制",
+          "type": "directory",
+          "version": "0.0.2",
+          "author": "隔壁老王",
+          "authors": [
+            {
+              "name": "隔壁老王",
+              "link": "https://github.com/wjdsg0327"
+            },
+            {
+              "name": "古又",
+              "link": "https://github.com/guyou45"
+            }
+          ],
+          "description": "OBS录制~|~录制哪个脚本",
+          "tags": [
+            "abgi"
+          ],
+          "lastUpdated": "2025-11-03 22:23:56"
         },
         {
           "name": "OCRArtifacts",
@@ -85991,7 +85979,7 @@
         {
           "name": "SwitchAccountMultipleMode",
           "type": "directory",
-          "version": "1.0",
+          "version": "1.1",
           "author": "起个名字好难的喵",
           "authors": [
             {
@@ -86017,7 +86005,7 @@
             "鼠标点击",
             "OCR"
           ],
-          "lastUpdated": "2025-11-02 19:19:54"
+          "lastUpdated": "2025-11-03 15:06:17"
         },
         {
           "name": "TCGQuickProficiency",
@@ -86740,7 +86728,7 @@
         {
           "name": "铁匠铺",
           "type": "directory",
-          "version": "2.3.1",
+          "version": "2.3.2",
           "author": "呱呱z",
           "authors": [
             {
@@ -86761,9 +86749,11 @@
             "铁匠铺",
             "锻造",
             "精锻用魔矿",
-            "模板匹配"
+            "图像识别",
+            "模板匹配",
+            "OCR"
           ],
-          "lastUpdated": "2025-08-30 21:12:51"
+          "lastUpdated": "2025-11-03 21:38:55"
         },
         {
           "name": "领取洞天宝钱和好感",

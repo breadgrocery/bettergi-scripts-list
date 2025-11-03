@@ -3,16 +3,16 @@
     "authors": [
       {
         "links": "",
-        "name": "汐"
+        "name": "起个名字好难的喵"
       }
     ],
     "bgi_version": "0.45.0",
     "description": "",
     "enable_monster_loot_split": false,
-    "last_modified_time": 1761840168121,
+    "last_modified_time": 1762178447159,
     "map_match_method": "",
     "map_name": "Teyvat",
-    "name": "5枫丹额外激活CD",
+    "name": "纳塔-科西霍",
     "tags": [],
     "type": "collect",
     "version": "1.0"
@@ -24,72 +24,71 @@
       "id": 1,
       "move_mode": "walk",
       "type": "teleport",
-      "x": 4309.12890625,
-      "y": 4760.20361328125
+      "x": 8582.28125,
+      "y": -2674.958984375
     },
     {
-      "action": "",
+      "action": "stop_flying",
       "action_params": "",
       "id": 2,
-      "locked": false,
-      "move_mode": "walk",
-      "type": "orientation",
-      "x": 4334.869140625,
-      "y": 4785.392578125
+      "move_mode": "fly",
+      "type": "path",
+      "x": 8556.7958984375,
+      "y": -2679.421875
     },
     {
-      "action": "",
-      "action_params": "",
+      "action": "combat_script",
+      "action_params": "keypress(VK_T)",
       "id": 3,
-      "move_mode": "run",
-      "type": "path",
-      "x": 4334.869140625,
-      "y": 4785.392578125
+      "move_mode": "walk",
+      "type": "orientation",
+      "x": 8557.037109375,
+      "y": -2682.09765625
     },
     {
       "action": "",
       "action_params": "",
       "id": 4,
-      "move_mode": "run",
+      "move_mode": "walk",
       "type": "path",
-      "x": 4406.419921875,
-      "y": 4834.75390625
+      "x": 8547.7119140625,
+      "y": -2680.9638671875
     },
     {
       "action": "",
       "action_params": "",
       "id": 5,
       "move_mode": "walk",
-      "type": "teleport",
-      "x": 4309.12890625,
-      "y": 4760.20361328125
+      "type": "path",
+      "x": 8542.6298828125,
+      "y": -2698.3046875
     },
     {
       "action": "",
       "action_params": "",
       "id": 6,
-      "move_mode": "run",
+      "move_mode": "walk",
       "type": "path",
-      "x": 4274.67578125,
-      "y": 4763.36572265625
+      "x": 8547.0205078125,
+      "y": -2713.3857421875
     },
     {
       "action": "",
       "action_params": "",
       "id": 7,
-      "move_mode": "dash",
+      "move_mode": "walk",
       "type": "path",
-      "x": 4263.67822265625,
-      "y": 4730.74853515625
+      "x": 8532.0595703125,
+      "y": -2717.0693359375
     },
     {
-      "action": "stop_flying",
+      "action": "",
       "action_params": "",
       "id": 8,
-      "move_mode": "fly",
-      "type": "path",
-      "x": 4283.94140625,
-      "y": 4642.21875
+      "move_mode": "walk",
+      "type": "target",
+      "x": 8485.6533203125,
+      "y": -2750.7275390625
     }
   ]
 }
